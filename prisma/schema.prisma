@@ -27,3 +27,12 @@ model Category {
     icon     String
     products Product[]
 }
+
+//? Model Order Food
+model Order {
+    id       Int    @id @default(autoincrement())
+    name     String
+    date     String
+    total    Float
+    products Json
+}
