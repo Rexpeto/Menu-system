@@ -1,7 +1,11 @@
-import { Inter } from "next/font/google";
+import Layout from "@/layout/Layout";
 
-const inter = Inter({ subsets: ["latin"] });
+const Home = () => {
+    return (
+        <Layout title="Menú">
+            <p>App</p>
+        </Layout>
+    );
+};
 
-export default function Home() {
-    return <main>App</main>;
-}
+export default Home;
