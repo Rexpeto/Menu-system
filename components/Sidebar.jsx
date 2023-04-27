@@ -1,12 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
 import useStore from "@/hooks/useStore";
 
 const Sidebar = () => {
     const { category, handdlerClickCategory, categoryActual } = useStore();
 
     return (
-        <aside className="md:w-2/12 xl:w-1/14 2xl:w-1/5 bg-gray-800 h-screen flex flex-col gap-4 py-2 overflow-x-hidden">
+        <aside className="md:w-3/12 xl:w-1/14 2xl:w-1/5 bg-gray-800 h-screen flex flex-col gap-4 py-2 overflow-x-hidden">
             <div className="flex items-center gap-4 px-4 border-b border-b-gray-700">
                 <Image
                     src="./favicon.svg"
