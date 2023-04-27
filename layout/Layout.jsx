@@ -14,7 +14,9 @@ const Layout = ({ children, title = "Inicio" }) => {
 
             <div className="flex text-white">
                 <Sidebar />
-                <main className="md:w-8/12 xl:w-3/4 2xl:w-4/5">{children}</main>
+                <main className="md:w-8/12 xl:w-3/4 2xl:w-4/5 p-6">
+                    {children}
+                </main>
             </div>
         </>
     );
