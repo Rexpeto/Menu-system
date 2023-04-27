@@ -5,7 +5,10 @@ const StoreContext = createContext();
 
 export const StoreProvider = ({ children }) => {
     //? State from category
-    const [category, setCategory] = useState();
+    const [category, setCategory] = useState([]);
+
+    //? State from category actual
+    const [categoryActual, setCategoryActual] = useState({});
 
     //? Getting category from api
     const getCategory = async () => {
@@ -22,8 +25,21 @@ export const StoreProvider = ({ children }) => {
         getCategory();
     }, []);
 
+    //? Category default
+    useEffect(() => {
+        setCategoryActual(category[0]);
+    }, [category]);
+
+    //? handdler category actual
+    const handdlerClickCategory = (id) => {
+        const actual = category.filter((c) => c.id === id)[0];
+        setCategoryActual(actual);
+    };
+
     return (
-        <StoreContext.Provider value={{ category }}>
+        <StoreContext.Provider
+            value={{ category, handdlerClickCategory, categoryActual }}
+        >
             {children}
         </StoreContext.Provider>
     );

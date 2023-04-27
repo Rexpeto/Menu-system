@@ -12,9 +12,11 @@ const Layout = ({ children, title = "Inicio" }) => {
                 />
             </Head>
 
-            <div className="flex text-white">
+            <div className="md:flex text-white">
                 <Sidebar />
-                <main className="md:w-8/12 xl:w-3/4 2xl:w-4/5">{children}</main>
+                <main className="w-full p-6 overflow-y-scrol h-screen overflow-y-scroll">
+                    {children}
+                </main>
             </div>
         </>
     );

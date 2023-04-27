@@ -1,12 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
 import useStore from "@/hooks/useStore";
 
 const Sidebar = () => {
-    const { category } = useStore();
+    const { category, handdlerClickCategory, categoryActual } = useStore();
 
     return (
-        <aside className="md:w-2/12 xl:w-1/14 2xl:w-1/5 bg-gray-800 h-screen flex flex-col gap-4 py-2 overflow-x-hidden">
+        <aside className="md:w-3/12 xl:w-1/14 2xl:w-1/5 bg-gray-800 h-screen flex flex-col gap-4 py-2 overflow-x-hidden">
             <div className="flex items-center gap-4 px-4 border-b border-b-gray-700">
                 <Image
                     src="./favicon.svg"
@@ -21,10 +20,15 @@ const Sidebar = () => {
             <nav className="flex flex-col w-full gap-4 px-2">
                 {category &&
                     category.map((item) => (
-                        <Link
-                            href={item?.name}
-                            className="flex items-center hover:bg-gray-600 rounded-lg py-2 gap-7 transition duration-150"
+                        <button
+                            type="button"
+                            className={`flex items-center ${
+                                categoryActual?.id === item?.id
+                                    ? "bg-gray-600"
+                                    : ""
+                            } hover:bg-gray-600 rounded-lg py-2 gap-7 transition duration-150`}
                             key={item?.id}
+                            onClick={() => handdlerClickCategory(item?.id)}
                         >
                             <Image
                                 src={`./assets/img/${item?.icon}.svg`}
@@ -35,7 +39,7 @@ const Sidebar = () => {
                                 title={item?.name}
                             />
                             {item?.name}
-                        </Link>
+                        </button>
                     ))}
             </nav>
         </aside>
