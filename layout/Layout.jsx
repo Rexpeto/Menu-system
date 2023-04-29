@@ -1,7 +1,25 @@
-import Sidebar from "@/components/Sidebar";
 import Head from "next/head";
+import Modal from "react-modal";
+import useStore from "@/hooks/useStore";
+import Sidebar from "@/components/Sidebar";
+import ModalProduct from "@/components/ModalProduct";
+
+const customStyle = {
+    content: {
+        top: "50%",
+        left: "50%",
+        right: "auto",
+        bottom: "auto",
+        marginRight: "-50%",
+        transform: "translate(-50%, -50%)",
+    },
+};
+
+Modal.setAppElement("#__next");
 
 const Layout = ({ children, title = "Inicio" }) => {
+    const { modal } = useStore();
+
     return (
         <>
             <Head>
@@ -18,6 +36,11 @@ const Layout = ({ children, title = "Inicio" }) => {
                     {children}
                 </main>
             </div>
+            {modal ? (
+                <Modal isOpen={modal} style={customStyle}>
+                    <ModalProduct />
+                </Modal>
+            ) : null}
         </>
     );
 };
