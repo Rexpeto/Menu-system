@@ -16,6 +16,9 @@ export const StoreProvider = ({ children }) => {
     //? State loading
     const [loading, setLoading] = useState(true);
 
+    //? State modal
+    const [modal, setModal] = useState(false);
+
     //? Getting category from api
     const getCategory = async () => {
         try {
@@ -48,6 +51,11 @@ export const StoreProvider = ({ children }) => {
         setProduct(product);
     };
 
+    //? handdler show modal
+    const handdlerShowModal = () => {
+        setModal(!modal);
+    };
+
     return (
         <StoreContext.Provider
             value={{
@@ -56,6 +64,9 @@ export const StoreProvider = ({ children }) => {
                 categoryActual,
                 loading,
                 handdlerSetProducto,
+                product,
+                modal,
+                handdlerShowModal,
             }}
         >
             {children}
