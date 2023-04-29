@@ -1,7 +1,10 @@
 import Image from "next/image";
+import useStore from "@/hooks/useStore";
 
 const Card = ({ data }) => {
     const { name, price, image } = data;
+    const { handdlerSetProducto } = useStore();
+
     return (
         <div className="grid max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <a href="#">
@@ -24,12 +27,13 @@ const Card = ({ data }) => {
                         ${price}
                     </p>
                 </div>
-                <a
-                    href="#"
+                <button
+                    type="button"
+                    onClick={() => handdlerSetProducto(data)}
                     className="block items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg hover:bg-blue-800 outline-none bg-blue-600 dark:hover:bg-blue-700 transition duration-150"
                 >
                     Agregar
-                </a>
+                </button>
             </div>
         </div>
     );
