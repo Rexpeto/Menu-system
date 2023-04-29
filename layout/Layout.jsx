@@ -12,7 +12,7 @@ const Layout = ({ children, title = "Inicio" }) => {
                 />
             </Head>
 
-            <div className="md:flex text-white">
+            <div className="flex text-white transition duration-150">
                 <Sidebar />
                 <main className="w-full p-6 overflow-y-scrol h-screen overflow-y-scroll">
                     {children}

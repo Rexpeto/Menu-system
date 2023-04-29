@@ -3,14 +3,22 @@ import useStore from "@/hooks/useStore";
 import Products from "@/components/Products";
 
 const Home = () => {
-    const { categoryActual } = useStore();
+    const { categoryActual, loading } = useStore();
     return (
-        <Layout title={`Menú ${categoryActual?.name}`}>
-            <h2 className="font-bold text-2xl uppercase mb-6">
-                {categoryActual?.name}
-            </h2>
-            <Products products={categoryActual?.products} />
-        </Layout>
+        <>
+            {loading ? (
+                <div className="flex justify-center items-center h-screen">
+                    <span className="loader"></span>
+                </div>
+            ) : (
+                <Layout title={`Menú ${categoryActual?.name}`}>
+                    <h2 className="font-bold text-2xl uppercase mb-6">
+                        {categoryActual?.name}
+                    </h2>
+                    <Products products={categoryActual?.products} />
+                </Layout>
+            )}
+        </>
     );
 };
 

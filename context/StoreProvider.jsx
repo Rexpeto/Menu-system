@@ -10,6 +10,9 @@ export const StoreProvider = ({ children }) => {
     //? State from category actual
     const [categoryActual, setCategoryActual] = useState({});
 
+    //? State loading
+    const [loading, setLoading] = useState(true);
+
     //? Getting category from api
     const getCategory = async () => {
         try {
@@ -28,6 +31,7 @@ export const StoreProvider = ({ children }) => {
     //? Category default
     useEffect(() => {
         setCategoryActual(category[0]);
+        setLoading(false);
     }, [category]);
 
     //? handdler category actual
@@ -38,7 +42,7 @@ export const StoreProvider = ({ children }) => {
 
     return (
         <StoreContext.Provider
-            value={{ category, handdlerClickCategory, categoryActual }}
+            value={{ category, handdlerClickCategory, categoryActual, loading }}
         >
             {children}
         </StoreContext.Provider>
