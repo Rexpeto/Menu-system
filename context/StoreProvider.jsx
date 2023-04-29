@@ -10,6 +10,9 @@ export const StoreProvider = ({ children }) => {
     //? State from category actual
     const [categoryActual, setCategoryActual] = useState({});
 
+    //? State product
+    const [product, setProduct] = useState({});
+
     //? State loading
     const [loading, setLoading] = useState(true);
 
@@ -40,9 +43,20 @@ export const StoreProvider = ({ children }) => {
         setCategoryActual(actual);
     };
 
+    //? handdler product
+    const handdlerSetProducto = (product) => {
+        setProduct(product);
+    };
+
     return (
         <StoreContext.Provider
-            value={{ category, handdlerClickCategory, categoryActual, loading }}
+            value={{
+                category,
+                handdlerClickCategory,
+                categoryActual,
+                loading,
+                handdlerSetProducto,
+            }}
         >
             {children}
         </StoreContext.Provider>
