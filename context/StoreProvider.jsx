@@ -113,6 +113,7 @@ export const StoreProvider = ({ children }) => {
                 modal,
                 handdlerShowModal,
                 handdlerAddShopping,
+                shopping,
             }}
         >
             {children}
