@@ -5,6 +5,7 @@ import Sidebar from "@/components/Sidebar";
 import ModalProduct from "@/components/ModalProduct";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Steps from "@/components/Steps";
 
 const customStyle = {
     content: {
@@ -37,6 +38,7 @@ const Layout = ({ children, title = "Inicio" }) => {
             <div className="flex text-white transition duration-150">
                 <Sidebar />
                 <main className="w-full p-6 overflow-y-scrol h-screen overflow-y-scroll">
+                    <Steps />
                     {children}
                 </main>
             </div>
