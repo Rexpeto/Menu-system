@@ -14,7 +14,7 @@ const Sidebar = () => {
             } bg-gray-800 h-screen flex flex-col justify-between gap-4 py-2 overflow-x-hidden transition-all duration-150`}
         >
             <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-4 px-4 py-2 border-b border-b-gray-700">
+                <div className="flex items-center gap-4 px-1 py-2 border-b border-b-gray-700">
                     <Image
                         src="./favicon.svg"
                         width={30}

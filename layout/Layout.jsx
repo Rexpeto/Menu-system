@@ -3,6 +3,8 @@ import Modal from "react-modal";
 import useStore from "@/hooks/useStore";
 import Sidebar from "@/components/Sidebar";
 import ModalProduct from "@/components/ModalProduct";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const customStyle = {
     content: {
@@ -29,6 +31,8 @@ const Layout = ({ children, title = "Inicio" }) => {
                     content="Vyper es un sistema de menú de restaurante"
                 />
             </Head>
+
+            <ToastContainer theme="dark" />
 
             <div className="flex text-white transition duration-150">
                 <Sidebar />

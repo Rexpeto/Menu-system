@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const StoreContext = createContext();
 
@@ -19,10 +20,15 @@ export const StoreProvider = ({ children }) => {
     //? State modal
     const [modal, setModal] = useState(false);
 
+    //? Shopping Cart
+    const [shopping, setShopping] = useState([]);
+
     //? Getting category from api
     const getCategory = async () => {
         try {
-            const { data } = await axios("http://localhost:3000/api/category");
+            const { data } = await axios(
+                "http://192.168.15.171:3000/api/category"
+            );
             setCategory(data);
         } catch (error) {
             console.log(error);
@@ -56,6 +62,45 @@ export const StoreProvider = ({ children }) => {
         setModal(!modal);
     };
 
+    //? handdler add in shopping cart
+    const handdlerAddShopping = (product) => {
+        //? Add or update shopping cart
+        if (
+            shopping.some(
+                (productState) => productState.id === product.product.id
+            )
+        ) {
+            const shoppingUpdate = shopping.map((productState) =>
+                productState.id === product.product.id
+                    ? {
+                          id: product.product.id,
+                          name: product.product.name,
+                          price: product.product.price,
+                          image: product.product.image,
+                          amount: product.amount,
+                      }
+                    : productState
+            );
+
+            setShopping(shoppingUpdate);
+            setModal(false);
+            toast.success("Cantidad actualizada");
+        } else {
+            setShopping([
+                ...shopping,
+                {
+                    id: product.product.id,
+                    name: product.product.name,
+                    price: product.product.price,
+                    image: product.product.image,
+                    amount: product.amount,
+                },
+            ]);
+            setModal(false);
+            toast.success("Producto agregado al carrito");
+        }
+    };
+
     return (
         <StoreContext.Provider
             value={{
@@ -67,6 +112,7 @@ export const StoreProvider = ({ children }) => {
                 product,
                 modal,
                 handdlerShowModal,
+                handdlerAddShopping,
             }}
         >
             {children}
