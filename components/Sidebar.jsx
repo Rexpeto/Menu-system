@@ -4,8 +4,8 @@ import { BsArrowBarRight, BsArrowBarLeft } from "react-icons/bs";
 import { useState } from "react";
 
 const Sidebar = () => {
-    const { category, handdlerClickCategory, categoryActual } = useStore();
-    const [abs, setAbs] = useState(false);
+    const { category, handdlerClickCategory, categoryActual, abs, setAbs } =
+        useStore();
 
     return (
         <aside
