@@ -6,7 +6,7 @@ import { BsCartPlus } from "react-icons/bs";
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
 
 const ModalProduct = () => {
-    const { product, handdlerShowModal } = useStore();
+    const { product, handdlerShowModal, handdlerAddShopping } = useStore();
     const [amount, setAmount] = useState(1);
 
     return (
@@ -19,7 +19,7 @@ const ModalProduct = () => {
                     <RiCloseLine />
                 </button>
             </div>
-            <div className="flex flex-col md:flex-row justify-between md:justify-normal items-center md:items-start gap-4">
+            <div className="flex flex-row items-start gap-4">
                 <div className="md:w-1/3">
                     <Image
                         className="rounded-lg"
@@ -54,6 +54,7 @@ const ModalProduct = () => {
                     <button
                         type="button"
                         className="flex items-center justify-center gap-2 px-3 py-2 text-lg font-medium text-white rounded-lg hover:bg-blue-800 outline-none bg-blue-600 dark:hover:bg-blue-700 transition duration-150"
+                        onClick={() => handdlerAddShopping({ product, amount })}
                     >
                         <BsCartPlus />
                         Ordenar
