@@ -5,6 +5,9 @@ import { toast } from "react-toastify";
 const StoreContext = createContext();
 
 export const StoreProvider = ({ children }) => {
+    //? State sidebar
+    const [abs, setAbs] = useState(false);
+
     //? State from category
     const [category, setCategory] = useState([]);
 
@@ -22,6 +25,9 @@ export const StoreProvider = ({ children }) => {
 
     //? Shopping Cart
     const [shopping, setShopping] = useState([]);
+
+    //? State Steps
+    const [step, setStep] = useState(1);
 
     //? Getting category from api
     const getCategory = async () => {
@@ -101,9 +107,16 @@ export const StoreProvider = ({ children }) => {
         }
     };
 
+    //? handdlerChangeStep
+    const handdlerChangeStep = (step) => {
+        setStep(step);
+    };
+
     return (
         <StoreContext.Provider
             value={{
+                abs,
+                setAbs,
                 category,
                 handdlerClickCategory,
                 categoryActual,
@@ -114,6 +127,8 @@ export const StoreProvider = ({ children }) => {
                 handdlerShowModal,
                 handdlerAddShopping,
                 shopping,
+                handdlerChangeStep,
+                step,
             }}
         >
             {children}
