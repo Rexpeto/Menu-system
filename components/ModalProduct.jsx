@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import useStore from "@/hooks/useStore";
 import { RiCloseLine } from "react-icons/ri";
@@ -6,8 +6,20 @@ import { BsCartPlus } from "react-icons/bs";
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
 
 const ModalProduct = () => {
-    const { product, handdlerShowModal, handdlerAddShopping } = useStore();
+    const { product, handdlerShowModal, handdlerAddShopping, shopping } =
+        useStore();
     const [amount, setAmount] = useState(1);
+    const [edit, setEdit] = useState(false);
+
+    useEffect(() => {
+        if (shopping.some((productState) => productState.id === product.id)) {
+            const productEdit = shopping.find(
+                (productState) => productState.id === product.id
+            );
+            setEdit(true);
+            setAmount(productEdit.amount);
+        }
+    }, [shopping, product]);
 
     return (
         <>
@@ -57,7 +69,7 @@ const ModalProduct = () => {
                         onClick={() => handdlerAddShopping({ product, amount })}
                     >
                         <BsCartPlus />
-                        Ordenar
+                        {edit ? "Editar" : "Ordenar"}
                     </button>
                 </div>
             </div>
