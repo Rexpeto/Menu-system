@@ -112,6 +112,13 @@ export const StoreProvider = ({ children }) => {
         setStep(step);
     };
 
+    //? handdlerDeleteProduct
+    const handdlerDeleteProduct = (id) => {
+        const shoppingUpdate = shopping.filter((product) => product.id !== id);
+        setShopping(shoppingUpdate);
+        toast.warn("Producto eliminado");
+    };
+
     return (
         <StoreContext.Provider
             value={{
@@ -129,6 +136,7 @@ export const StoreProvider = ({ children }) => {
                 shopping,
                 handdlerChangeStep,
                 step,
+                handdlerDeleteProduct,
             }}
         >
             {children}
