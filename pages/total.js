@@ -2,15 +2,15 @@ import Layout from "@/layout/Layout";
 import useStore from "@/hooks/useStore";
 
 const Total = () => {
-    const { shopping } = useStore();
+    const { shopping, client, setClient, total } = useStore();
 
     return (
         <Layout title="Total">
             <h1 className="text-4xl font-bold">Pagar</h1>
 
             {shopping.length ? (
-                <div className="grid grid-cols-1 md:grid-cols-1-2 gap-10 md:gap-2 mt-5">
-                    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <div className="grid grid-cols-1 md:grid-cols-1-2 gap-10 md:gap-4 mt-5">
+                    <div className="relative overflow-x-auto shadow-lg sm:rounded-lg">
                         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead className="text-xs text-gray-700 uppercase dark:text-gray-400">
                                 <tr>
@@ -69,6 +69,8 @@ const Total = () => {
                                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                 placeholder=" "
                                 suggestion="false"
+                                onChange={(e) => setClient(e.target.value)}
+                                value={client}
                             />
                             <label
                                 htmlFor="nombre"
@@ -77,9 +79,12 @@ const Total = () => {
                                 Nombre de cliente
                             </label>
                         </div>
+                        <h3 className="mb-5 text-2xl">
+                            Total: <span className="font-bold">${total}</span>
+                        </h3>
                         <button
                             type="submit"
-                            className="text-white outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 dark:focus:ring-blue-800 transition duration-150"
+                            className="text-white outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 transition duration-150"
                         >
                             Realizar Pedido
                         </button>
