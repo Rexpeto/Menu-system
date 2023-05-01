@@ -25,6 +25,11 @@ const Steps = () => {
                             handdlerChangeStep(link.step);
                         }}
                         key={link.step}
+                        className={`rounded-lg border px-2 py-1 border-gray-400 hover:border-blue-500 transition duration-150 ${
+                            router.pathname === link.url
+                                ? "border-blue-500"
+                                : ""
+                        }`}
                     >
                         {link.name}
                     </button>
