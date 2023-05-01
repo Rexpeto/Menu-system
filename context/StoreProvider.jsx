@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 const StoreContext = createContext();
 
@@ -29,6 +30,9 @@ export const StoreProvider = ({ children }) => {
     //? State Steps
     const [step, setStep] = useState(1);
 
+    //? Router next
+    const router = useRouter();
+
     //? Getting category from api
     const getCategory = async () => {
         try {
@@ -56,6 +60,7 @@ export const StoreProvider = ({ children }) => {
     const handdlerClickCategory = (id) => {
         const actual = category.filter((c) => c.id === id)[0];
         setCategoryActual(actual);
+        router.push("/");
     };
 
     //? handdler product
