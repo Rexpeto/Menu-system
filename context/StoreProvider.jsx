@@ -30,6 +30,12 @@ export const StoreProvider = ({ children }) => {
     //? State Steps
     const [step, setStep] = useState(1);
 
+    //? State client
+    const [client, setClient] = useState("");
+
+    //? State total
+    const [total, setTotal] = useState(0);
+
     //? Router next
     const router = useRouter();
 
@@ -55,6 +61,16 @@ export const StoreProvider = ({ children }) => {
         setCategoryActual(category[0]);
         setLoading(false);
     }, [category]);
+
+    //? Total
+    useEffect(() => {
+        const newTotal = shopping.reduce(
+            (total, product) => product.price * product.amount + total,
+            0
+        );
+
+        setTotal(newTotal);
+    }, [shopping]);
 
     //? handdler category actual
     const handdlerClickCategory = (id) => {
@@ -142,6 +158,9 @@ export const StoreProvider = ({ children }) => {
                 handdlerChangeStep,
                 step,
                 handdlerDeleteProduct,
+                setClient,
+                client,
+                total,
             }}
         >
             {children}
