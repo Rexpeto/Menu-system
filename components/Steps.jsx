@@ -3,8 +3,8 @@ import useStore from "@/hooks/useStore";
 
 const steps = [
     { step: 1, name: "Menú", url: "/" },
-    { step: 2, name: "Ordenes", url: "/ordenes" },
-    { step: 3, name: "Total", url: "/total" },
+    { step: 2, name: "Pedidos", url: "/ordenes" },
+    { step: 3, name: "Pagar", url: "/total" },
 ];
 
 const Steps = () => {
