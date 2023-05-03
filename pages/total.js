@@ -2,7 +2,7 @@ import Layout from "@/layout/Layout";
 import useStore from "@/hooks/useStore";
 
 const Total = () => {
-    const { shopping, client, setClient, total } = useStore();
+    const { shopping, client, setClient, total, setOrder } = useStore();
 
     return (
         <Layout title="Total">
@@ -60,7 +60,7 @@ const Total = () => {
                             </tbody>
                         </table>
                     </div>
-                    <form>
+                    <form onSubmit={setOrder}>
                         <div className="relative z-0 w-full mb-6 mt-5 group">
                             <input
                                 type="text"
