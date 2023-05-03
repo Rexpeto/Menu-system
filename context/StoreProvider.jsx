@@ -159,6 +159,19 @@ export const StoreProvider = ({ children }) => {
                     date: Date.now().toString(),
                 }
             );
+
+            //* Reset app
+
+            setProduct({});
+            setShopping([]);
+            setStep(1);
+            setClient("");
+            setTotal(0);
+            toast.success("Pedido realizado correctamente");
+
+            setTimeout(() => {
+                router.push("/");
+            }, 3000);
         } catch (error) {
             console.log(error);
         }
