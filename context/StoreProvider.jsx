@@ -140,6 +140,22 @@ export const StoreProvider = ({ children }) => {
         toast.warn("Producto eliminado");
     };
 
+    //? Set order in API
+    const setOrder = async (e) => {
+        e.preventDefault();
+
+        try {
+            if (client.length <= 2) {
+                toast.error("Debe de colocar su nombre o es inválido");
+                return;
+            }
+
+            console.log("Hi");
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <StoreContext.Provider
             value={{
@@ -161,6 +177,7 @@ export const StoreProvider = ({ children }) => {
                 setClient,
                 client,
                 total,
+                setOrder,
             }}
         >
             {children}
