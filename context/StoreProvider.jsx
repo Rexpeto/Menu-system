@@ -140,6 +140,43 @@ export const StoreProvider = ({ children }) => {
         toast.warn("Producto eliminado");
     };
 
+    //? Set order in API
+    const setOrder = async (e) => {
+        e.preventDefault();
+
+        try {
+            if (client.length <= 2) {
+                toast.error("Debe de colocar su nombre o es inválido");
+                return;
+            }
+
+            const { data } = await axios.post(
+                "http://192.168.15.171:3000/api/order",
+                {
+                    client,
+                    shopping,
+                    total,
+                    date: Date.now().toString(),
+                }
+            );
+
+            //* Reset app
+
+            setProduct({});
+            setShopping([]);
+            setStep(1);
+            setClient("");
+            setTotal(0);
+            toast.success("Pedido realizado correctamente");
+
+            setTimeout(() => {
+                router.push("/");
+            }, 3000);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <StoreContext.Provider
             value={{
@@ -161,6 +198,7 @@ export const StoreProvider = ({ children }) => {
                 setClient,
                 client,
                 total,
+                setOrder,
             }}
         >
             {children}
