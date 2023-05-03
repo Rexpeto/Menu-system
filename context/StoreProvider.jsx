@@ -150,7 +150,15 @@ export const StoreProvider = ({ children }) => {
                 return;
             }
 
-            console.log("Hi");
+            const { data } = await axios.post(
+                "http://192.168.15.171:3000/api/order",
+                {
+                    client,
+                    shopping,
+                    total,
+                    date: Date.now().toString(),
+                }
+            );
         } catch (error) {
             console.log(error);
         }
