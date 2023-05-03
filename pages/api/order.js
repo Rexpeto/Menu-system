@@ -12,8 +12,11 @@ const handler = async (req, res) => {
                 products: req.body.shopping,
             },
         });
+        res.status(200).json("Exito");
 
         console.log(order);
+    } else {
+        console.log("Hola");
     }
 };
 
