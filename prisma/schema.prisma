@@ -30,9 +30,10 @@ model Category {
 
 //? Model Order Food
 model Order {
-    id       Int    @id @default(autoincrement())
+    id       Int     @id @default(autoincrement())
     name     String
     date     String
     total    Float
     products Json
+    status   Boolean @default(false)
 }
