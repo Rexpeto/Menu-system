@@ -43,7 +43,7 @@ export const StoreProvider = ({ children }) => {
     const getCategory = async () => {
         try {
             const { data } = await axios(
-                "http://192.168.15.171:3000/api/category"
+                `http://192.168.1.102:3000/api/category`
             );
             setCategory(data);
         } catch (error) {
@@ -151,7 +151,7 @@ export const StoreProvider = ({ children }) => {
             }
 
             const { data } = await axios.post(
-                "http://192.168.15.171:3000/api/order",
+                "http://192.168.1.102:3000/api/order",
                 {
                     client,
                     shopping,
