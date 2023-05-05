@@ -35,9 +35,17 @@ const OrderList = ({ order }) => {
                         </div>
                     </div>
                 ))}
-                <h2 className="text-2xl">
-                    Total: <span className="font-bold">${total}</span>
-                </h2>
+                <div className="flex flex-col md:flex-row justify-between items-center gap-3">
+                    <h2 className="text-2xl">
+                        Total: <span className="font-bold">${total}</span>
+                    </h2>
+                    <button
+                        type="button"
+                        className="block w-full md:w-min items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg hover:bg-green-800 outline-none bg-green-600 dark:hover:bg-green-700 transition duration-150"
+                    >
+                        Aprobar
+                    </button>
+                </div>
             </div>
         </div>
     );
