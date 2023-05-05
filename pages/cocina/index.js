@@ -1,6 +1,7 @@
 import useSWR from "swr";
 import axios from "axios";
 import LayoutAdmin from "@/layout/LayoutAdmin";
+import OrderList from "@/components/order/OrderList";
 
 const Index = () => {
     const fetcher = () => axios("/api/order").then((datos) => datos.data);
@@ -14,7 +15,12 @@ const Index = () => {
                 </div>
             ) : (
                 <LayoutAdmin title="Cocina">
-                    <div>Cocina</div>
+                    <h2 className="text-2xl font-bold mb-5">Cocina</h2>
+                    <div className="flex flex-col items-center gap-4">
+                        {data.map((order) => (
+                            <OrderList key={order.id} order={order} />
+                        ))}
+                    </div>
                 </LayoutAdmin>
             )}
         </>
