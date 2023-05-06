@@ -5,7 +5,9 @@ import OrderList from "@/components/order/OrderList";
 
 const Index = () => {
     const fetcher = () => axios("/api/order").then((datos) => datos.data);
-    const { data, error, isLoading } = useSWR("/api/order", fetcher);
+    const { data, error, isLoading } = useSWR("/api/order", fetcher, {
+        refreshInterval: 100,
+    });
 
     return (
         <>
