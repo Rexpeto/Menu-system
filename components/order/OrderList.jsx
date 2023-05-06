@@ -7,7 +7,9 @@ const OrderList = ({ order }) => {
 
     const completeOrder = async () => {
         try {
-            await axios.post(`http://192.168.1.108:3000/api/orders/${id}`);
+            const { data } = await axios.post(
+                `http://192.168.1.108:3000/api/orders/${id}`
+            );
             toast.success("Orden completada!");
         } catch (error) {
             console.log(error);
