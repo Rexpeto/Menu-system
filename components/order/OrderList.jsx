@@ -1,8 +1,19 @@
 import Image from "next/image";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const OrderList = ({ order }) => {
-    const { name, products, total, date } = order;
-    console.log(order);
+    const { name, products, total, date, id } = order;
+
+    const completeOrder = async () => {
+        try {
+            await axios.post(`http://192.168.1.108:3000/api/orders/${id}`);
+            toast.success("Orden completada!");
+        } catch (error) {
+            console.log(error);
+            toast.error("Oops!! Hubo un error!!");
+        }
+    };
 
     return (
         <div className="w-full p-4 rounded-lg shadow sm:p-8 bg-gray-800 border-gray-700">
@@ -35,9 +46,18 @@ const OrderList = ({ order }) => {
                         </div>
                     </div>
                 ))}
-                <h2 className="text-2xl">
-                    Total: <span className="font-bold">${total}</span>
-                </h2>
+                <div className="flex flex-col md:flex-row justify-between items-center gap-3">
+                    <h2 className="text-2xl">
+                        Total: <span className="font-bold">${total}</span>
+                    </h2>
+                    <button
+                        type="button"
+                        className="block w-full md:w-min items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg hover:bg-green-800 outline-none bg-green-600 dark:hover:bg-green-700 transition duration-150"
+                        onClick={completeOrder}
+                    >
+                        Aprobar
+                    </button>
+                </div>
             </div>
         </div>
     );
